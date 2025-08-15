@@ -1,1 +1,59 @@
-
+{
+  "short_name": "Grouk Wallet",
+  "name": "Grouk Wallet - Secure Solana Wallet for Telegram",
+  "description": "Your secure, independent Solana wallet in Telegram. Create, import, send & receive SOL with military-grade encryption.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "grouk-wallet-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "grouk-wallet-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#9333ea",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["finance", "utilities", "productivity"],
+  "screenshots": [
+    {
+      "src": "grouk-wallet-screenshot.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "telegram",
+      "url": "https://t.me/GroukWallet_bot"
+    }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Open Wallet",
+      "short_name": "Wallet",
+      "description": "Quick access to your Grouk Wallet",
+      "url": "/",
+      "icons": [
+        {
+          "src": "grouk-wallet-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
