@@ -1,5 +1,5 @@
 {
-  "name": "grouk-wallet-vercel",
+  "name": "groukwalletnoor",
   "version": "1.0.0",
   "description": "Grouk Wallet - Secure Solana wallet for Telegram on Vercel",
   "main": "api/index.js",
