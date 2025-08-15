@@ -1,1 +1,414 @@
+/* Grouk Wallet - Global Styles */
 
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f5f5;
+  color: #1f2937;
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Typography scale for Grouk Wallet */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1f2937;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Links and buttons */
+a {
+  color: #9333ea;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  transition: all 0.2s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Form elements */
+input, textarea, select {
+  font-family: inherit;
+  font-size: 16px; /* Prevents zoom on mobile */
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+  color: #1f2937;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #9333ea;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Custom scrollbar for Grouk Wallet */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #9333ea, #3b82f6);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f5f9;
+}
+
+/* Telegram Mini App specific styles */
+.tg-viewport {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Utility classes for Grouk Wallet */
+.grouk-container {
+  max-width: 448px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.grouk-text-center {
+  text-align: center;
+}
+
+.grouk-text-left {
+  text-align: left;
+}
+
+.grouk-text-right {
+  text-align: right;
+}
+
+.grouk-font-bold {
+  font-weight: 700;
+}
+
+.grouk-font-semibold {
+  font-weight: 600;
+}
+
+.grouk-font-medium {
+  font-weight: 500;
+}
+
+.grouk-opacity-75 {
+  opacity: 0.75;
+}
+
+.grouk-opacity-50 {
+  opacity: 0.5;
+}
+
+.grouk-hidden {
+  display: none;
+}
+
+.grouk-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Spacing utilities */
+.grouk-mt-1 { margin-top: 0.25rem; }
+.grouk-mt-2 { margin-top: 0.5rem; }
+.grouk-mt-3 { margin-top: 0.75rem; }
+.grouk-mt-4 { margin-top: 1rem; }
+.grouk-mt-6 { margin-top: 1.5rem; }
+.grouk-mt-8 { margin-top: 2rem; }
+
+.grouk-mb-1 { margin-bottom: 0.25rem; }
+.grouk-mb-2 { margin-bottom: 0.5rem; }
+.grouk-mb-3 { margin-bottom: 0.75rem; }
+.grouk-mb-4 { margin-bottom: 1rem; }
+.grouk-mb-6 { margin-bottom: 1.5rem; }
+.grouk-mb-8 { margin-bottom: 2rem; }
+
+.grouk-p-1 { padding: 0.25rem; }
+.grouk-p-2 { padding: 0.5rem; }
+.grouk-p-3 { padding: 0.75rem; }
+.grouk-p-4 { padding: 1rem; }
+.grouk-p-6 { padding: 1.5rem; }
+.grouk-p-8 { padding: 2rem; }
+
+/* Flexbox utilities */
+.grouk-flex {
+  display: flex;
+}
+
+.grouk-flex-col {
+  flex-direction: column;
+}
+
+.grouk-items-center {
+  align-items: center;
+}
+
+.grouk-justify-center {
+  justify-content: center;
+}
+
+.grouk-justify-between {
+  justify-content: space-between;
+}
+
+.grouk-gap-1 { gap: 0.25rem; }
+.grouk-gap-2 { gap: 0.5rem; }
+.grouk-gap-3 { gap: 0.75rem; }
+.grouk-gap-4 { gap: 1rem; }
+
+/* Grid utilities */
+.grouk-grid {
+  display: grid;
+}
+
+.grouk-grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grouk-grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grouk-grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Animation utilities */
+.grouk-animate-spin {
+  animation: grouk-spin 1s linear infinite;
+}
+
+.grouk-animate-pulse {
+  animation: grouk-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.grouk-animate-bounce {
+  animation: grouk-bounce 1s infinite;
+}
+
+@keyframes grouk-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes grouk-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes grouk-bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Color utilities for Grouk Wallet theme */
+.grouk-bg-primary {
+  background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
+}
+
+.grouk-bg-white {
+  background-color: #ffffff;
+}
+
+.grouk-bg-gray-50 {
+  background-color: #f9fafb;
+}
+
+.grouk-bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.grouk-text-primary {
+  color: #9333ea;
+}
+
+.grouk-text-white {
+  color: #ffffff;
+}
+
+.grouk-text-gray-600 {
+  color: #4b5563;
+}
+
+.grouk-text-gray-500 {
+  color: #6b7280;
+}
+
+.grouk-text-gray-400 {
+  color: #9ca3af;
+}
+
+/* Border utilities */
+.grouk-border {
+  border: 1px solid #e5e7eb;
+}
+
+.grouk-border-primary {
+  border: 1px solid #9333ea;
+}
+
+.grouk-rounded {
+  border-radius: 0.375rem;
+}
+
+.grouk-rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.grouk-rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.grouk-rounded-2xl {
+  border-radius: 1rem;
+}
+
+.grouk-rounded-full {
+  border-radius: 9999px;
+}
+
+/* Shadow utilities */
+.grouk-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.grouk-shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.grouk-shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 640px) {
+  .grouk-container {
+    padding: 0 12px;
+  }
+  
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  input, textarea, select {
+    border-width: 2px;
+  }
+  
+  button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .grouk-bg-primary,
+  .grouk-bg-gray-50,
+  .grouk-bg-gray-100 {
+    background: white !important;
+  }
+  
+  .grouk-shadow,
+  .grouk-shadow-md,
+  .grouk-shadow-lg {
+    box-shadow: none !important;
+  }
+}
