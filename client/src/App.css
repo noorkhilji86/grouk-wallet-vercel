@@ -1,1 +1,280 @@
+/* Grouk Wallet App Styles */
 
+.App {
+  text-align: left;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.grouk-app {
+  animation: grouk-fade-in 0.5s ease-out;
+}
+
+/* Grouk Wallet Loading Screen */
+.grouk-loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.grouk-logo-container {
+  margin-bottom: 2rem;
+}
+
+.grouk-logo {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ffffff, #f0f9ff, #ddd6fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.grouk-tagline {
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.grouk-loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  animation: grouk-spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+.grouk-loading-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.grouk-loading-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0.8;
+}
+
+.grouk-loading-features .feature {
+  font-size: 0.9rem;
+  padding: 0.3rem 0;
+  animation: grouk-fade-in 0.5s ease-out;
+}
+
+.grouk-loading-features .feature:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.grouk-loading-features .feature:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.grouk-loading-features .feature:nth-child(3) {
+  animation-delay: 1.5s;
+}
+
+/* Animations */
+@keyframes grouk-spin {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+@keyframes grouk-fade-in {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes grouk-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes grouk-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Grouk Wallet specific classes */
+.grouk-gradient {
+  background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
+}
+
+.grouk-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(147, 51, 234, 0.1);
+  transition: all 0.3s ease;
+}
+
+.grouk-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.grouk-button {
+  background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.grouk-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
+}
+
+.grouk-button:active {
+  transform: translateY(0);
+}
+
+.grouk-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.grouk-button:hover::before {
+  left: 100%;
+}
+
+/* Telegram WebApp specific styles */
+.tg-theme-bg-color {
+  background-color: var(--tg-theme-bg-color, #ffffff);
+}
+
+.tg-theme-text-color {
+  color: var(--tg-theme-text-color, #000000);
+}
+
+.tg-theme-hint-color {
+  color: var(--tg-theme-hint-color, #999999);
+}
+
+.tg-theme-link-color {
+  color: var(--tg-theme-link-color, #9333ea);
+}
+
+.tg-theme-button-color {
+  background-color: var(--tg-theme-button-color, #9333ea);
+}
+
+.tg-theme-button-text-color {
+  color: var(--tg-theme-button-text-color, #ffffff);
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 480px) {
+  .grouk-logo {
+    font-size: 3rem;
+  }
+  
+  .grouk-tagline {
+    font-size: 1rem;
+  }
+  
+  .grouk-loading-text {
+    font-size: 1.1rem;
+  }
+  
+  .grouk-loading-features .feature {
+    font-size: 0.8rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .grouk-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .grouk-button {
+    border: 2px solid #ffffff;
+  }
+  
+  .grouk-card {
+    border: 2px solid #9333ea;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .grouk-loading-spinner {
+    animation: none;
+  }
+  
+  .grouk-app,
+  .grouk-fade-in,
+  .grouk-slide-up {
+    animation: none;
+  }
+  
+  .grouk-button:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .grouk-loading-screen {
+    display: none;
+  }
+  
+  .App {
+    background: white !important;
+    color: black !important;
+  }
+}
