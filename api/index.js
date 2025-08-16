@@ -1,6 +1,4 @@
 // api/index.js
-// Grouk Wallet API (Vercel Serverless)
-
 const express = require('express');
 const cors = require('cors');
 const serverless = require('serverless-http');
@@ -8,28 +6,23 @@ const TelegramBot = require('node-telegram-bot-api');
 
 const app = express();
 
-/* ---------- Core Middleware ---------- */
 app.use(cors({
   origin: process.env.WEB_APP_URL || '*',
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
 
-// Security headers
 app.use((req, res, next) => {
-  res.setHeader('X-Frame-Options', 'ALLOWALL'); // allow in Telegram webview
+  res.setHeader('X-Frame-Options', 'ALLOWALL');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('X-Powered-By', 'Grouk Wallet on Vercel');
   next();
 });
 
-/* ---------- Env ---------- */
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN; // e.g. 123:AA...
-const WEB_APP_URL =
-  process.env.WEB_APP_URL || 'https://grouk-wallet-vercel.vercel.app';
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const WEB_APP_URL = (process.env.WEB_APP_URL || 'https://grouk-wallet-vercel.vercel.app').replace(/\/$/, '');
 
-/* ---------- Telegram Bot (Webhook mode) ---------- */
 let bot = null;
 let handlersAttached = false;
 
@@ -37,7 +30,6 @@ function attachBotHandlers() {
   if (!bot || handlersAttached) return;
   handlersAttached = true;
 
-  // /start
   bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
     const firstName = msg.from.first_name || 'Friend';
@@ -68,7 +60,6 @@ Tap below to open the wallet 👇`;
     });
   });
 
-  // /wallet
   bot.onText(/\/wallet/, (msg) => {
     const chatId = msg.chat.id;
     bot.sendMessage(
@@ -85,7 +76,6 @@ Tap below to open the wallet 👇`;
     );
   });
 
-  // /help
   bot.onText(/\/help/, (msg) => {
     const chatId = msg.chat.id;
     const helpMessage = `🆘 **Grouk Wallet Help**
@@ -103,7 +93,6 @@ Tips:
     bot.sendMessage(chatId, helpMessage, { parse_mode: 'Markdown' });
   });
 
-  // /about
   bot.onText(/\/about/, (msg) => {
     const chatId = msg.chat.id;
     const aboutMessage = `ℹ️ **About Grouk Wallet**
@@ -116,7 +105,6 @@ Version: 1.0.0`;
     bot.sendMessage(chatId, aboutMessage, { parse_mode: 'Markdown' });
   });
 
-  // /security
   bot.onText(/\/security/, (msg) => {
     const chatId = msg.chat.id;
     const securityMessage = `🛡️ **Security**
@@ -126,7 +114,6 @@ Version: 1.0.0`;
     bot.sendMessage(chatId, securityMessage, { parse_mode: 'Markdown' });
   });
 
-  // Callback buttons
   bot.on('callback_query', (cb) => {
     const action = cb.data;
     const chatId = cb.message.chat.id;
@@ -140,7 +127,6 @@ Version: 1.0.0`;
     bot.sendMessage(chatId, map[action] || 'Use /help for available commands.');
   });
 
-  // Generic message
   bot.on('message', (msg) => {
     const chatId = msg.chat.id;
     const text = msg.text || '';
@@ -170,7 +156,7 @@ Version: 1.0.0`;
   }
   try {
     bot = new TelegramBot(BOT_TOKEN);
-    const webhookUrl = `${WEB_APP_URL.replace(/\/$/, '')}/api/webhook`;
+    const webhookUrl = `${WEB_APP_URL}/api/webhook`;
     await bot.setWebHook(webhookUrl);
     console.log('🤖 Webhook set ->', webhookUrl);
     attachBotHandlers();
@@ -180,8 +166,7 @@ Version: 1.0.0`;
   }
 })();
 
-/* ---------- API Routes (NO /api prefix here) ---------- */
-// External path becomes /api/webhook
+// INTERNAL route: /webhook  -> external: /api/webhook
 app.post('/webhook', (req, res) => {
   try {
     if (bot) bot.processUpdate(req.body);
@@ -231,14 +216,12 @@ app.get('/deployment', (req, res) => {
     deployment_id: process.env.VERCEL_DEPLOYMENT_ID || 'local',
     region: process.env.VERCEL_REGION || 'auto',
     environment: process.env.NODE_ENV || 'development',
-    webhook_url: bot ? `${WEB_APP_URL.replace(/\/$/, '')}/api/webhook` : null
+    webhook_url: bot ? `${WEB_APP_URL}/api/webhook` : null
   });
 });
 
-// Root → health
 app.get('/', (req, res) => res.redirect('/api/health'));
 
-// 404
 app.use((req, res) => {
   res.status(404).json({
     error: 'Not found',
@@ -252,5 +235,4 @@ app.use((req, res) => {
   });
 });
 
-/* ---------- Export serverless handler ---------- */
 module.exports = serverless(app);
