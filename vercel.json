@@ -1,16 +1,13 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "client/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "build" }
-    }
+    { "src": "client/package.json", "use": "@vercel/static-build", "config": { "distDir": "build" } }
   ],
   "installCommand": "cd client && npm install --legacy-peer-deps",
   "buildCommand": "cd client && npm run build",
   "outputDirectory": "client/build",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "NPM_CONFIG_PRODUCTION": "false"
   }
 }
