@@ -1,3 +1,7 @@
+"overrides": {
+  "ajv": "6.12.6",
+  "ajv-keywords": "3.5.2"
+}
 {
   "name": "grouk-wallet-client",
   "version": "1.0.0",
