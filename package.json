@@ -18,10 +18,8 @@
     "node-telegram-bot-api": "^0.61.0",
     "serverless-http": "^3.2.0"
   },
-  "engines": {
-    "node": "22.x"
-  },
-  "keywords": ["grouk", "wallet", "solana", "telegram", "vercel"],
+  "engines": { "node": "22.x" },
+  "keywords": ["grouk","wallet","solana","telegram","vercel"],
   "author": "noorkhilji519 - Grouk Wallet Team",
   "license": "MIT"
 }
