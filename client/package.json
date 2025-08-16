@@ -1,12 +1,8 @@
-"overrides": {
-  "ajv": "6.12.6",
-  "ajv-keywords": "3.5.2"
-}
 {
   "name": "grouk-wallet-client",
   "version": "1.0.0",
   "private": true,
-  "homepage": ".",
+  "description": "Grouk Wallet – Telegram Mini App (React client)",
   "scripts": {
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build && echo \"Build completed for Vercel\"",
@@ -15,23 +11,30 @@
   },
   "dependencies": {
     "@solana/web3.js": "^1.98.4",
-    "ajv": "8.12.0",
-    "ajv-keywords": "5.1.0",
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
-    "process": "^0.11.10",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "stream-browserify": "^3.0.0",
-    "web-vitals": "^4.2.0"
+    "web-vitals": "^4.2.4"
   },
   "overrides": {
-    "ajv": "8.12.0",
-    "ajv-keywords": "5.1.0"
+    "ajv": "6.12.6",
+    "ajv-keywords": "3.5.2",
+    "schema-utils": "3.1.1",
+    "terser-webpack-plugin": "5.3.6"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
