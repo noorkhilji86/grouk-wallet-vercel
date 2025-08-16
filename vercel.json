@@ -1,43 +1,17 @@
 {
   "version": 2,
-  "name": "grouk-wallet",
-  "builds": [
+  "headers": [
     {
-      "src": "client/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    },
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "ALLOWALL" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/static/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=31536000,immutable"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/client/build/index.html"
-    }
-  ],
-  "env": {
-    "TELEGRAM_BOT_TOKEN": "8353300770:AAG_pbUOBCmZjgXvYAl-OLrCgIyfOdrXY28",
-    "WEB_APP_URL": "https://your-project.vercel.app",
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 30
-    }
-  }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/((?!api).*)", "destination": "/" }
+  ]
 }
