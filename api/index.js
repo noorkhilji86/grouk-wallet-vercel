@@ -6,13 +6,15 @@ const TelegramBot = require('node-telegram-bot-api');
 
 const app = express();
 
+// CORS & JSON
 app.use(cors({
   origin: process.env.WEB_APP_URL || '*',
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
 
-app.use((req, res, next) => {
+// Security headers
+app.use((_, res, next) => {
   res.setHeader('X-Frame-Options', 'ALLOWALL');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
@@ -20,9 +22,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// ENV
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const WEB_APP_URL = (process.env.WEB_APP_URL || 'https://grouk-wallet-vercel.vercel.app').replace(/\/$/, '');
 
+// Telegram Bot (webhook mode)
 let bot = null;
 let handlersAttached = false;
 
@@ -66,11 +70,7 @@ Tap below to open the wallet 👇`;
       chatId,
       '💳 **Access Your Grouk Wallet**\n\nYour secure Solana wallet awaits!',
       {
-        reply_markup: {
-          inline_keyboard: [[
-            { text: '💳 Open Grouk Wallet', web_app: { url: WEB_APP_URL } }
-          ]]
-        },
+        reply_markup: { inline_keyboard: [[{ text: '💳 Open Grouk Wallet', web_app: { url: WEB_APP_URL } }]] },
         parse_mode: 'Markdown'
       }
     );
@@ -115,16 +115,13 @@ Version: 1.0.0`;
   });
 
   bot.on('callback_query', (cb) => {
-    const action = cb.data;
-    const chatId = cb.message.chat.id;
-    bot.answerCallbackQuery(cb.id);
-
     const map = {
       help: '📖 Use /help anytime for the full guide.',
       security: '🛡️ Use /security for complete details.',
       about: 'ℹ️ Use /about for technical overview.'
     };
-    bot.sendMessage(chatId, map[action] || 'Use /help for available commands.');
+    bot.answerCallbackQuery(cb.id);
+    bot.sendMessage(cb.message.chat.id, map[cb.data] || 'Use /help for available commands.');
   });
 
   bot.on('message', (msg) => {
@@ -139,13 +136,7 @@ Version: 1.0.0`;
       'Experience lightning-fast Grouk Wallet — /wallet ⚡'
     ];
     const r = responses[Math.floor(Math.random() * responses.length)];
-    bot.sendMessage(chatId, r, {
-      reply_markup: {
-        inline_keyboard: [[
-          { text: '💳 Open Grouk Wallet', web_app: { url: WEB_APP_URL } }
-        ]]
-      }
-    });
+    bot.sendMessage(chatId, r, { reply_markup: { inline_keyboard: [[{ text: '💳 Open Grouk Wallet', web_app: { url: WEB_APP_URL } }]] } });
   });
 }
 
@@ -166,7 +157,7 @@ Version: 1.0.0`;
   }
 })();
 
-// INTERNAL route: /webhook  -> external: /api/webhook
+// INTERNAL route (mounted at /api/* externally by Vercel)
 app.post('/webhook', (req, res) => {
   try {
     if (bot) bot.processUpdate(req.body);
@@ -177,7 +168,8 @@ app.post('/webhook', (req, res) => {
   }
 });
 
-app.get('/health', (req, res) => {
+// Health & info
+app.get('/health', (_, res) => {
   res.json({
     status: 'OK',
     message: 'Grouk Wallet Server is LIVE on Vercel!',
@@ -189,7 +181,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.get('/stats', (req, res) => {
+app.get('/stats', (_, res) => {
   res.json({
     name: 'Grouk Wallet',
     version: '1.0.0',
@@ -200,7 +192,7 @@ app.get('/stats', (req, res) => {
   });
 });
 
-app.get('/performance', (req, res) => {
+app.get('/performance', (_, res) => {
   res.json({
     timestamp: new Date().toISOString(),
     uptime_seconds: process.uptime(),
@@ -210,7 +202,7 @@ app.get('/performance', (req, res) => {
   });
 });
 
-app.get('/deployment', (req, res) => {
+app.get('/deployment', (_, res) => {
   res.json({
     platform: 'Vercel',
     deployment_id: process.env.VERCEL_DEPLOYMENT_ID || 'local',
@@ -220,9 +212,10 @@ app.get('/deployment', (req, res) => {
   });
 });
 
-app.get('/', (req, res) => res.redirect('/api/health'));
+app.get('/', (_, res) => res.redirect('/api/health'));
 
-app.use((req, res) => {
+// 404
+app.use((_, res) => {
   res.status(404).json({
     error: 'Not found',
     available_endpoints: [
