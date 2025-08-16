@@ -1,17 +1,31 @@
 {
   "version": 2,
-  "headers": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Frame-Options", "value": "ALLOWALL" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-      ]
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
     }
   ],
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/((?!api).*)", "destination": "/" }
+  "buildCommand": "npm install && cd client && npm install --legacy-peer-deps && npm run build",
+  "framework": null,
+  "env": {
+    "BOT_TOKEN": "@bot_token",
+    "BASE_URL": "@base_url"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "client/build/$1"
+    }
   ]
 }
