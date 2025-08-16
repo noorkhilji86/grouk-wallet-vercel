@@ -2,6 +2,7 @@
   "name": "groukwalletnoor",
   "version": "1.0.0",
   "description": "Grouk Wallet - Secure Solana wallet for Telegram on Vercel",
+  "private": true,
   "main": "api/index.js",
   "scripts": {
     "start": "node api/index.js",
@@ -11,14 +12,14 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
-  "cors": "^2.8.5",
-  "dotenv": "^16.3.1",
-  "express": "^4.18.2",
-  "node-telegram-bot-api": "^0.61.0",
-  "serverless-http": "^3.2.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-telegram-bot-api": "^0.61.0",
+    "serverless-http": "^3.2.0"
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "keywords": ["grouk", "wallet", "solana", "telegram", "vercel"],
   "author": "noorkhilji519 - Grouk Wallet Team",
