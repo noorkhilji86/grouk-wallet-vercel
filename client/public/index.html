@@ -1,201 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#9333ea" />
-    <meta name="description" content="Grouk Wallet - Secure Solana wallet for Telegram by @noorkhilji519" />
-    
-    <!-- Telegram Mini App Script -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="
-      default-src 'self' https:;
-      script-src 'self' 'unsafe-inline' https://telegram.org;
-      style-src 'self' 'unsafe-inline';
-      img-src 'self' data: https:;
-      connect-src 'self' https://api.mainnet-beta.solana.com;
-      frame-ancestors *;
-    ">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Grouk Wallet - Secure Solana Wallet" />
-    <meta property="og:description" content="Your secure, independent Solana wallet in Telegram. Create, import, send & receive SOL with military-grade encryption." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="%PUBLIC_URL%/grouk-wallet-og.png" />
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Grouk Wallet - Secure Solana Wallet" />
-    <meta name="twitter:description" content="Your secure, independent Solana wallet in Telegram" />
-    <meta name="twitter:creator" content="@noorkhilji519" />
-    
-    <!-- App Title -->
-    <title>Grouk Wallet - Secure Solana Wallet</title>
-    
-    <!-- Favicon and App Icons -->
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/grouk-wallet-192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preconnect" href="https://telegram.org">
-    <link rel="preconnect" href="https://api.mainnet-beta.solana.com">
-    
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Grouk Wallet - Solana wallet in Telegram" />
+    <title>Grouk Wallet</title>
     <style>
-      /* Critical CSS for faster loading */
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-        background: #f5f5f5;
-        overflow-x: hidden;
-      }
-      
-      /* Telegram Mini App viewport */
-      .tg-viewport {
-        height: 100vh;
-        overflow: hidden;
-      }
-      
-      /* Loading screen for Grouk Wallet */
-      .grouk-loading {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%);
-        color: white;
-        flex-direction: column;
-        font-family: inherit;
-      }
-      
-      .grouk-logo {
-        font-size: 3rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        background: linear-gradient(45deg, #ffffff, #f0f9ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-align: center;
-      }
-      
-      .grouk-spinner {
-        width: 50px;
-        height: 50px;
-        border: 4px solid rgba(255,255,255,0.3);
-        border-top: 4px solid white;
-        border-radius: 50%;
-        animation: grouk-spin 1s linear infinite;
-        margin-bottom: 1rem;
-      }
-      
-      .grouk-loading-text {
-        font-size: 1.1rem;
-        font-weight: 500;
-        opacity: 0.9;
-        text-align: center;
-      }
-      
-      @keyframes grouk-spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      /* Smooth fade-in animation */
-      @keyframes grouk-fade-in {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      .grouk-app {
-        animation: grouk-fade-in 0.5s ease-out;
-      }
-      
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      
-      ::-webkit-scrollbar-thumb {
-        background: #9333ea;
-        border-radius: 3px;
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-        background: #7c3aed;
-      }
-      
-      /* Prevent zoom on mobile */
-      input, textarea, select {
-        font-size: 16px;
-      }
-      
-      /* Hide default focus outline, we'll use custom */
-      button:focus,
-      input:focus,
-      textarea:focus {
-        outline: none;
-      }
+      body{margin:0;background:#0b1020;color:#fff;font-family:system-ui,Arial}
+      .card{max-width:860px;margin:20px auto;padding:16px;border-radius:16px;background:#151b34;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+      button{background:#7c5cff;color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:600}
+      input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid #2a335a;background:#0f1530;color:#fff}
+      .row{display:flex;gap:10px;flex-wrap:wrap}
+      .row>div{flex:1 1 260px}
+      .muted{opacity:.8}
+      a{color:#8eeeff;text-decoration:none}
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+      .pill{font-size:12px;background:#0f1530;padding:6px 10px;border-radius:999px;border:1px solid #2a335a;display:inline-block}
+      .danger{background:#ff4d4d}
     </style>
   </head>
   <body>
-    <noscript>
-      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
-        <h2>JavaScript Required</h2>
-        <p>Grouk Wallet requires JavaScript to run. Please enable JavaScript in your browser.</p>
-      </div>
-    </noscript>
-    
-    <div id="root">
-      <!-- Loading screen while React loads -->
-      <div class="grouk-loading">
-        <div class="grouk-logo">GROUK</div>
-        <div class="grouk-spinner"></div>
-        <div class="grouk-loading-text">Loading Grouk Wallet...</div>
-        <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
-          Secure • Fast • Independent
-        </div>
-      </div>
-    </div>
-    
-    <!-- Telegram WebApp Initialization -->
-    <script>
-      // Initialize Telegram WebApp immediately
-      if (window.Telegram && window.Telegram.WebApp) {
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
-        
-        // Set theme colors for Grouk Wallet
-        tg.setHeaderColor('#9333ea');
-        tg.setBackgroundColor('#f5f5f5');
-        
-        // Hide main button initially
-        tg.MainButton.hide();
-        
-        console.log('🚀 Grouk Wallet initialized in Telegram WebApp');
-        console.log('👤 User:', tg.initDataUnsafe?.user?.first_name || 'Unknown');
-        console.log('🎨 Theme:', tg.colorScheme || 'light');
-      } else {
-        console.log('⚠️ Grouk Wallet running outside Telegram');
-      }
-      
-      // Performance monitoring
-      window.addEventListener('load', function() {
-        console.log('⚡ Grouk Wallet loaded in', performance.now().toFixed(2), 'ms');
-      });
-      
-      // Error handling
-      window.addEventListener('error', function(e) {
-        console.error('🚨 Grouk Wallet Error:', e.error);
-      });
-    </script>
+    <div id="root"></div>
   </body>
 </html>
